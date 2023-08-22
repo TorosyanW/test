@@ -3,21 +3,38 @@ package main
 import "fmt"
 
 	
-func main () {
-  width := 15
-  height := 10
+func clearScreen() {
+  fmt.Print("\033[H\033[2J]]")
 
-  for index := 0; index < height; index++ {
-    for j := 0; j < width; j++ {
-       if index == 0 || index == height-1 || j == 0 || j == width-1 {
-      fmt.Print("*")
-      } else {
-        fmt.Print (" ")
-      }
+}
+
+func main() {
+  sizeY := 10
+  sizeX := 20
+
+  var arrayStr  [][]string = make([][]string, sizeY)
+
+  clearScreen()
+
+  for i := 0; i < sizeY; i++ {
+    arrayStr[i] = make([]string , sizeX)
+   for j := 0; j < sizeX; j++ {
+    if i > sizeY-3 {
+      arrayStr[i][j] = "日"
+    } else {
+      arrayStr[i][j] = "語"
+    }
+   }
+     fmt.Println()
 
   }
+   
+   for _, valueY := range arrayStr{
+    for _, valueX := range valueY {
+       fmt.Print(valueX)
 
- fmt.Println()
-}
+    }
+        fmt.Println()
+  }
 
 }
